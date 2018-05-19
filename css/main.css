@@ -1,0 +1,72 @@
+body {
+  background: #fff;
+  font-family: "Ubuntu", sans-serif;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro {
+  width: 30em;
+  text-align: justify;
+  margin: auto;
+}
+
+.button {
+  background:orange;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:5px;
+  display:inline-block;
+  transition:0.5s;
+  cursor:pointer;
+}
+
+ .button:hover {
+    opacity:0.5;
+}
+
+/* #flipcard {
+}
+
+.animate-flipcard {
+  animation: flip 1.0s 1;
+  border-radius: 50%;
+  transform: scale(0.5);
+}
+
+@keyframes flip {
+  0% {
+    transform: scale3d(1,1,1) rotateX(0deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+  50% {
+    transform: scale3d(2,2,2) rotateX(3600deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,.8);
+  }
+  100% {
+    transform: scale3d(1,1,1) rotateX(7200deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+} */
+
+table {
+   /* background-color: #f5f5f5; */
+   margin: auto;
+}
+
+td {
+   height: 5em;
+   width: 5em;
+   background-size: 100%;
+   /* hover {background-color: #f5f5f5}; */
+}
+
+.cellBtn {
+  /* padding: 0.2em; */
+  transition: 0.5s;
+  cursor: pointer;
+  border-width: 0.1em;
+  border-style:solid;
+  border-color: #333;
+}

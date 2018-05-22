@@ -4,21 +4,36 @@
  *
  */
 
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     margin: 0;
 }
 
-header, nav, footer, section, article, div {
+header,
+nav,
+footer,
+section,
+article,
+div {
     box-sizing: border-box;
 }
 
+/*
+ *
+ * Main section
+ *
+ */
 
 body {
   background: #fff;
@@ -33,12 +48,24 @@ body {
   flex-wrap: wrap;
 }
 
+/*
+ *
+ * Introduction and rules paragraph
+ *
+ */
+
 .intro {
   width: 50%;
   text-align: center;
   margin: auto;
   padding: 2em;
 }
+
+/*
+ *
+ * Reset button
+ *
+ */
 
 .button {
   background: orange;
@@ -54,6 +81,12 @@ body {
  .button:hover {
     opacity: 0.5;
 }
+
+/*
+ *
+ * Game board - 4x4 table
+ *
+ */
 
 table {
   max-width: 80%;
@@ -73,7 +106,7 @@ td img {
 
 table td {
   border: 0.25em solid gray;
-  padding: 0.2em solid white;
+  padding: 0.2em;
 }
 
 .cellBtn {
@@ -116,8 +149,4 @@ table td {
   to {
     opacity: 0;
   }
-}
-
-#trySelection {
-  visibility: hidden;
 }

@@ -4,8 +4,6 @@ let trySelection = 1;
 let trySelected1 = "";
 let trySelected2 = "";
 
-console.log('t', trySelection);
-
 // create an array of ramdom generated numbers for placing images on the game board
 function shuffle(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
@@ -38,7 +36,7 @@ function fillGameBoard() {
         arr[j] = arr[j] - 8;
       }
 
-      var x = document.createElement("IMG");
+      let x = document.createElement("IMG");
       x.setAttribute("src", "img/icon-" + arr[j] + ".png");
       x.setAttribute("alt", "Matching iconic pictures");
       elements[i].appendChild(x);
@@ -58,31 +56,23 @@ board.addEventListener('click', function (evt) {
   if (trySelection == 1) {
     trySelected1 = evt.target;
     if (trySelected1.classList.contains("imgFadeIn")) {
-      console.log ('already selected');
       alert("square has already been selected")
     } else {
-      console.log('add fade in 1');
       trySelected1.classList.remove("imgFadeOut");
       trySelected1.classList.add("imgFadeIn");
-      console.log('sel 1 obj after add = ', trySelected1.classList);
       trySelection = 2;
     };
   } else {
       trySelected2 = evt.target;
-      console.log("2", trySelected2);
       if (trySelected2.classList.contains("imgFadeIn")) {
-        console.log ('already selected');
         alert("square has already been selected")
       } else {
-        console.log('add fade in 2');
         trySelected2.classList.remove("imgFadeOut");
         trySelected2.classList.add("imgFadeIn");
         trySelection = 1;
       };
 
-      console.log('1', trySelected1, '  2', trySelected2);
       if (trySelected1.isEqualNode(trySelected2)) {
-        console.log('node is same')
         trySelected1.classList.remove("imgFadeOut");
         trySelected2.classList.remove("imgFadeOut");
         trySelected1.classList.add("imgFadeIn");

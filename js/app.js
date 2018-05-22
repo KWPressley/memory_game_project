@@ -1,6 +1,14 @@
+// housekeeping - create global varibles
+const board = document.querySelector('#board');
+let trySelection = 1;
+let trySelected1 = "";
+let trySelected2 = "";
+
+console.log('t', trySelection);
+
 // create an array of ramdom generated numbers for placing images on the game board
 function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  let currentIndex = array.length, temporaryValue, randomIndex;
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
@@ -29,12 +37,64 @@ function fillGameBoard() {
       if (arr[j] > 8) {
         arr[j] = arr[j] - 8;
       }
-      // build url to random selected image
-      iconNum = "url('img/icon-" + arr[j] + ".png')";
-      elements[i].style.backgroundImage = iconNum;
+
+      var x = document.createElement("IMG");
+      x.setAttribute("src", "img/icon-" + arr[j] + ".png");
+      x.setAttribute("alt", "Matching iconic pictures");
+      elements[i].appendChild(x);
     };
 }
 
+//function to fade in the selected card
+// checks to see if card is already selected (send alert)
+// checks to see if first or second selection
+// after the second selection - if not equal, fade our image and reset return
+//    if selections match - leave images showing
+// note:  trySelection is first or second selections
+//        trySelected1 is the first square selected
+//        trySelected2 is the second square selected
+
+board.addEventListener('click', function (evt) {
+  if (trySelection == 1) {
+    trySelected1 = evt.target;
+    if (trySelected1.classList.contains("imgFadeIn")) {
+      console.log ('already selected');
+      alert("square has already been selected")
+    } else {
+      console.log('add fade in 1');
+      trySelected1.classList.remove("imgFadeOut");
+      trySelected1.classList.add("imgFadeIn");
+      console.log('sel 1 obj after add = ', trySelected1.classList);
+      trySelection = 2;
+    };
+  } else {
+      trySelected2 = evt.target;
+      console.log("2", trySelected2);
+      if (trySelected2.classList.contains("imgFadeIn")) {
+        console.log ('already selected');
+        alert("square has already been selected")
+      } else {
+        console.log('add fade in 2');
+        trySelected2.classList.remove("imgFadeOut");
+        trySelected2.classList.add("imgFadeIn");
+        trySelection = 1;
+      };
+
+      console.log('1', trySelected1, '  2', trySelected2);
+      if (trySelected1.isEqualNode(trySelected2)) {
+        console.log('node is same')
+        trySelected1.classList.remove("imgFadeOut");
+        trySelected2.classList.remove("imgFadeOut");
+        trySelected1.classList.add("imgFadeIn");
+        trySelected2.classList.add("imgFadeIn");
+      } else {
+        trySelected1.classList.remove("imgFadeIn");
+        trySelected2.classList.remove("imgFadeIn");
+        trySelected1.classList.add("imgFadeOut");
+        trySelected2.classList.add("imgFadeOut");
+      };
+  };
+});
 
 // Random shuffle the td's number
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12, 13, 14, 15, 16];

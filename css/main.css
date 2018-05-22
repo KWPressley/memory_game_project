@@ -1,3 +1,25 @@
+/*
+ *
+ * Housekeeping
+ *
+ */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0;
+}
+
+header, nav, footer, section, article, div {
+    box-sizing: border-box;
+}
+
+
 body {
   background: #fff;
   font-family: "Ubuntu", sans-serif;
@@ -6,67 +28,96 @@ body {
   margin-right: auto;
 }
 
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .intro {
-  width: 30em;
-  text-align: justify;
+  width: 50%;
+  text-align: center;
   margin: auto;
+  padding: 2em;
 }
 
 .button {
-  background:orange;
-  color:#fff;
-  padding:10px 15px;
-  border-radius:5px;
-  display:inline-block;
-  transition:0.5s;
-  cursor:pointer;
+  background: orange;
+  color: #fff;
+  padding: 1em;
+  margin: 2em;
+  display: inline-block;
+  border-radius: 2em;;
+  transition: 0.5s;
+  cursor: pointer;
 }
 
  .button:hover {
-    opacity:0.5;
+    opacity: 0.5;
 }
-
-/* #flipcard {
-}
-
-.animate-flipcard {
-  animation: flip 1.0s 1;
-  border-radius: 50%;
-  transform: scale(0.5);
-}
-
-@keyframes flip {
-  0% {
-    transform: scale3d(1,1,1) rotateX(0deg);
-    box-shadow: 0 2px 4px rgba(0,0,0,.3);
-  }
-  50% {
-    transform: scale3d(2,2,2) rotateX(3600deg);
-    box-shadow: 0 20px 40px rgba(0,0,0,.8);
-  }
-  100% {
-    transform: scale3d(1,1,1) rotateX(7200deg);
-    box-shadow: 0 2px 4px rgba(0,0,0,.3);
-  }
-} */
 
 table {
-   /* background-color: #f5f5f5; */
-   margin: auto;
+  max-width: 80%;
+  height: auto;
+  margin: auto;
 }
 
 td {
-   height: 5em;
-   width: 5em;
-   background-size: 100%;
-   /* hover {background-color: #f5f5f5}; */
+  /* position: relative; */
+  text-align: center;
+}
+
+td img {
+  max-width: 100%;
+  height: auto;
+}
+
+table td {
+  border: 0.25em solid gray;
+  padding: 0.2em solid white;
 }
 
 .cellBtn {
-  /* padding: 0.2em; */
-  transition: 0.5s;
   cursor: pointer;
-  border-width: 0.1em;
-  border-style:solid;
-  border-color: #333;
+  background-size: 100%;
+  background-color: blue;
+  font-size: 2em;
+  color: white;
+}
+
+.cellBtn img {
+  opacity: 0;
+}
+
+.imgFadeIn {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.imgFadeOut {
+  animation-name: fadeOut;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+#trySelection {
+  visibility: hidden;
 }

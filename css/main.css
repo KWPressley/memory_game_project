@@ -72,7 +72,7 @@ body {
 }
 
 .accordion:after {
-    content: '\002B';
+    content: "\002B";
     color: #777;
     font-weight: bold;
     float: right;
@@ -99,7 +99,7 @@ body {
  * Score board with number of moves and time time clock
  *
  */
-#scoreBoard {
+.score-board {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -111,14 +111,13 @@ body {
   font-size: 2em;
 }
 
-#numMoves {
-  /* font-size: 2em; */
+.num-moves {
+
 }
 
-#timeClock {
-  /* font-size: 2em; */
+.time-clock {
+  
 }
-
 
 /*
  *
@@ -133,7 +132,6 @@ table {
 }
 
 td {
-  /* pointer-events: none; */
   text-align: center;
 }
 
@@ -147,7 +145,7 @@ table td {
   padding: 0.2em;
 }
 
-.cellBtn {
+.cell-btn {
   cursor: pointer;
   background-size: 100%;
   background-color: blue;
@@ -155,7 +153,7 @@ table td {
   color: white;
 }
 
-.cellBtn img {
+.cell-btn img {
   opacity: 0;
 }
 
@@ -201,7 +199,7 @@ table td {
   padding: 1em;
   margin: 2em;
   display: inline-block;
-  border-radius: 2em;;
+  border-radius: 2em;
   transition: 0.5s;
   cursor: pointer;
 }
@@ -232,27 +230,26 @@ table td {
 }
 
 /* Modal Content/Box */
-.modalContent {
+.modal-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   font-size: 2em;
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto;
   padding: 0.5em;
   border: 1px solid #888;
   width: 50%;
 }
 
 /* The Close Button */
-.modalClose {
+.modal-close {
   color: #aaa;
-  /* float: right;10 */
   font: 3em "Ubuntu", sans-serif bold;
 }
 
-.modalClose:hover,
-.modalClose:focus {
+.modal-close:hover,
+.modal-close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;

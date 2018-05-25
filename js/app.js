@@ -1,24 +1,26 @@
 // housekeeping - create global varibles
 // Modal elements
-const modal = document.getElementById('myModal');
-const modalClose = document.getElementById('modalClose');
-const modalText = document.getElementById('modalText');
+const modal = document.querySelector('.my-modal');
+const modalClose = document.querySelector('.modal-close');
+const modalText = document.querySelector('.modal-text');
 let numMatchedSets = 0;
 let numOfMoves = 0;
+let moveText = ';'
 let firstClick = true;
 
 // game board elements
-const board = document.querySelector('#board');
+const board = document.querySelector('.board');
+const numMoves = document.querySelector('.num-moves');
 let trySelection = 1;
-let trySelected1 = "";
-let trySelected2 = "";
-const acc = document.getElementsByClassName("accordion");
+let trySelected1 = '';
+let trySelected2 = '';
+const acc = document.querySelector('.accordion');
 
 //timer variables
-let saveDate = "";
-let startTime = "";
-let endTime = "";
-let intervalId = "";
+let saveDate = '';
+let startTime = '';
+let endTime = '';
+let intervalId = '';
 let totalTime = 0;
 
 //Build timer and display on page; save starting time to calculate length
@@ -31,11 +33,11 @@ function startClock() {
   sec = 0;
 
   function pad ( val ) {
-     return val > 9 ? val : "0" + val;
+     return val > 9 ? val : '0' + val;
   }
   intervalId = setInterval( function(){
-      document.getElementById("seconds").innerHTML=pad(++sec%60);
-      document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
+      document.querySelector('.seconds').innerHTML=pad(++sec%60);
+      document.querySelector('.minutes').innerHTML=pad(parseInt(sec/60,10));
   }, 1000);
 };
 
@@ -62,8 +64,8 @@ function shuffle(array) {
 
 // use random array to select images to place on board at random "td's"
 function fillGameBoard() {
-  let iconNum = "";
-  let elements = document.querySelectorAll('.cellBtn');
+  let iconNum = '';
+  let elements = document.querySelectorAll('.cell-btn');
     // loop thru the td's to fill each one with an image
     for (let i = 0; i < elements.length; i++) {
       // if random number is > 8 reduce it by 8 so image 1 thru 8 will be selected 2 times each to make the matches
@@ -72,17 +74,16 @@ function fillGameBoard() {
         arr[j] = arr[j] - 8;
       }
 
-      let x = document.createElement("IMG");
-      x.setAttribute("src", "img/icon-" + arr[j] + ".png");
-      x.setAttribute("alt", "Matching iconic pictures");
-      x.setAttribute("class", "icon-image");
+      let x = document.createElement('IMG');
+      x.setAttribute('src', 'img/icon-' + arr[j] + '.png');
+      x.setAttribute('alt', 'Matching iconic pictures');
+      x.setAttribute('class', 'icon-image');
       elements[i].appendChild(x);
     };
   trySelection = 1;
   numOfMoves = 0;
-  let moveText = "No. of moves: " + numOfMoves;
-  let el = document.getElementById('numMoves');
-  el.textContent = moveText;
+  moveText = 'No. of moves: ' + numOfMoves;
+  numMoves.textContent = moveText;
 }
 
 
@@ -91,18 +92,18 @@ function fillGameBoard() {
 // Open the modal
 openModal = function(text) {
   modalText.textContent = text;
-  modal.style.display = "block";
+  modal.style.display = 'block';
 };
 
 // When the user clicks on <span> (x), close the modal
 modalClose.onclick = function() {
-  modal.style.display = "none";
+  modal.style.display = 'none';
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function() {
   if (event.target == modal) {
-      modal.style.display = "none";
+      modal.style.display = 'none';
   };
 }
 
@@ -128,15 +129,15 @@ foundMatch = function() {
       if (totalTime/1000 < 50) {stars = stars + 2} else
       if (totalTime/1000 < 70) {stars = stars + 1};
       // add stars to display
-      let textWinner = document.getElementById('modalWinner');
+      let textWinner = document.querySelector('.modal-winner');
       textWinner.textContent = " -- Click Reset Button to play again!";
-      openModal("CONGRATULATIONS - We Have a WINNER!");
+      openModal('CONGRATULATIONS - We Have a WINNER!');
 
-      let elements = document.querySelectorAll(".stars");
+      let elements = document.querySelectorAll('.stars');
       // loop thru the stars to turn on all earned
       for (let i = 0; i < elements.length; i++) {
         if (stars > i) {
-          elements[i].style.visibility = "visible";
+          elements[i].style.visibility = 'visible';
         };
       };
   };
@@ -157,19 +158,19 @@ board.addEventListener('click', function (evt) {
     startClock();
   };
   // only run check when an IMG is clicked
-  if (evt.target.tagName === "IMG") {
-    if (evt.target.classList.contains("imgFadeIn")) {
-      openModal("Square has already been selected");
+  if (evt.target.tagName === 'IMG') {
+    if (evt.target.classList.contains('imgFadeIn')) {
+      openModal('Square has already been selected');
     } else {
     if (trySelection == 1) {
         trySelected1 = evt.target;
-        trySelected1.classList.add("imgFadeIn");
-        trySelected1.classList.remove("imgFadeOut");
+        trySelected1.classList.add('imgFadeIn');
+        trySelected1.classList.remove('imgFadeOut');
         trySelection = 2;
       } else {
         trySelected2 = evt.target;
-        trySelected2.classList.add("imgFadeIn");
-        trySelected2.classList.remove("imgFadeOut");
+        trySelected2.classList.add('imgFadeIn');
+        trySelected2.classList.remove('imgFadeOut');
         trySelection = 1;
 
 
@@ -178,18 +179,18 @@ board.addEventListener('click', function (evt) {
           // if square was visible and selected again - skip check for a match
           if (trySelected1.isEqualNode(trySelected2)) {
             foundMatch();
-            trySelected1.classList.add("imgFadeIn");
-            trySelected2.classList.add("imgFadeIn");
+            trySelected1.classList.add('imgFadeIn');
+            trySelected2.classList.add('imgFadeIn');
           } else {
-            trySelected1.classList.remove("imgFadeIn");
-            trySelected2.classList.remove("imgFadeIn");
-            trySelected1.classList.add("imgFadeOut");
-            trySelected2.classList.add("imgFadeOut");
+            trySelected1.classList.remove('imgFadeIn');
+            trySelected2.classList.remove('imgFadeIn');
+            trySelected1.classList.add('imgFadeOut');
+            trySelected2.classList.add('imgFadeOut');
           }; // end check if two squares match or not
         }, 1000);
         numOfMoves = numOfMoves + 1;
-        let moveText = "No. of moves: " + numOfMoves;
-        let el = document.getElementById('numMoves');
+        let moveText = 'No. of moves: ' + numOfMoves;
+        let el = document.querySelector('.num-moves');
         el.textContent = moveText;
       };  // end second square selected
     };
@@ -212,10 +213,10 @@ btnReset.addEventListener('click', function () {
   firstClick = true;
   // Reset number of matched numMatchedSet
   numMatchedSets = 0;
-  // Reset game timeClock
+  // Reset game time clock
   clearInterval(intervalId);
-  document.getElementById("seconds").innerHTML = "00";
-  document.getElementById("minutes").innerHTML = "00";
+  document.querySelector('.seconds').innerHTML = '00';
+  document.querySelector('.minutes').innerHTML = '00';
   // Random shuffle the td's number
   let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12, 13, 14, 15, 16];
   arr = shuffle(arr);
@@ -223,19 +224,17 @@ btnReset.addEventListener('click', function () {
 });
 
 //accordion operation for introduction and  rules
-let i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
+for (let i = 0; i < acc.length; i++) {
+  acc[i].addEventListener('click', function() {
+    this.classList.toggle('active');
     let panel = this.nextElementSibling;
     if (panel.style.maxHeight){
       panel.style.maxHeight = null;
     } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+      panel.style.maxHeight = panel.scrollHeight + 'px';
     }
   });
-}
+};
 
 // Reset number of matched numMatchedSets
 numMatchedSets = 0;

@@ -18,7 +18,7 @@
     <h1>Memory Matching Game</h1>
 
       <!-- Game board section -->
-      <section id="gameBoard">
+      <section class="game-board">
         <button class="accordion">Intro and Insructions</button>
         <section class="panel">
           <p>The object of the game is to find matching pairs hidden on the board.  First select a square, then select another square to see if you find a match.  If the squares match, you "win" that match.  If the pair does not match, the squares will turn back over.  To score - try to find the matches in as few moves as possible and in the least amount of time.</p>
@@ -26,29 +26,29 @@
 
         <!-- The Scoreboard -->
         <section class="container">
-          <div id="scoreBoard">
-            <span id="numMoves">0</span>
-            <span id="timeClock">
+          <div class="score-board">
+            <span class="num-moves">0</span>
+            <span class="time-clock">
               <span>Total time: </span>
-              <span id="minutes"></span>:<span id="seconds"></span>
+              <span class="minutes"></span>:<span class="seconds"></span>
             </span>
           </div>
         </section>
 
         <!-- The Modal -->
-        <section id="myModal" class="modal">
+        <section class="modal my-modal">
           <!-- Modal content -->
-          <div class="modalContent">
-            <p id="modalText">Modal text</p>
-            <span id="modalClose">X</span>
+          <div class="modal-content">
+            <p class="modal-text">Modal text</p>
+            <span class="modal-close">X</span>
             <p>
-              <img id="star1" class="stars" src="img/star.png" alt="Stars won"></img>
-              <img id="star2" class="stars" src="img/star.png" alt="Stars won"></img>
-              <img id="star3" class="stars" src="img/star.png" alt="Stars won"></img>
-              <img id="star4" class="stars" src="img/star.png" alt="Stars won"></img>
-              <img id="star5" class="stars" src="img/star.png" alt="Stars won"></img>
+              <img class="stars star1" src="img/star.png" alt="One Stars won">
+              <img class="stars star2" src="img/star.png" alt="Two Stars won">
+              <img class="stars star3" src="img/star.png" alt="Three Stars won">
+              <img class="stars star4" src="img/star.png" alt="Four Stars won">
+              <img class="stars star5" src="img/star.png" alt="Five Stars won">
             </p>
-            <p id="modalWinner"></p>
+            <p class="modal-winner"></p>
           </div>
 
         </section>
@@ -56,29 +56,29 @@
         <!-- Set up the Game Board with Table Elements -->
 
         <section style="overflow-x:auto;">
-          <table id="board">
+          <table class="board">
             <tr>
-              <td id="cell1" class="cellBtn">1</td>
-              <td id="cell2" class="cellBtn">2</td>
-              <td id="cell3" class="cellBtn">3</td>
-              <td id="cell4" class="cellBtn">4</td>
+              <td class="cell-btn cell1">1</td>
+              <td class="cell-btn cell2">2</td>
+              <td class="cell-btn cell3">3</td>
+              <td class="cell-btn cell4">4</td>
             </tr>
             <tr>
-              <td id="cell5" class="cellBtn">5</td>
-              <td id="cell6" class="cellBtn">6</td>
-              <td id="cell7" class="cellBtn">7</td>
-              <td id="cell8" class="cellBtn">8</td>
+              <td class="cell-btn cell5">5</td>
+              <td class="cell-btn cell6">6</td>
+              <td class="cell-btn cell7">7</td>
+              <td class="cell-btn cell8">8</td>
             <tr>
-              <td id="cell9" class="cellBtn">9</td>
-              <td id="cell10" class="cellBtn">10</td>
-              <td id="cell11" class="cellBtn">11</td>
-              <td id="cell12" class="cellBtn">12</td>
+              <td class="cell-btn cell9">9</td>
+              <td class="cell-btn cell10">10</td>
+              <td class="cell-btn cell11">11</td>
+              <td class="cell-btn cell12">12</td>
             </tr>
             <tr>
-              <td id="cell13" class="cellBtn">13</td>
-              <td id="cell14" class="cellBtn">14</td>
-              <td id="cell15" class="cellBtn">15</td>
-              <td id="cell16" class="cellBtn">16</td>
+              <td class="cell-btn cell13">13</td>
+              <td class="cell-btn cell14">14</td>
+              <td class="cell-btn cell15">15</td>
+              <td class="cell-btn cell16">16</td>
             </tr>
           </table>
         </section>

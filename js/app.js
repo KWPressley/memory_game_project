@@ -1,4 +1,5 @@
 // housekeeping - create global varibles
+//
 // Modal elements
 const modal = document.querySelector('.my-modal');
 const modalClose = document.querySelector('.modal-close');

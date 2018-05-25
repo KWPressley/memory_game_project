@@ -17,7 +17,7 @@ h2,
 h3,
 h4,
 h5 {
-    margin: 0;
+    margin: 1em;
 }
 
 header,
@@ -50,37 +50,75 @@ body {
 
 /*
  *
- * Introduction and rules paragraph
+ * Introduction and rules paragraph - accordian format
  *
  */
 
-.intro {
-  width: 50%;
-  text-align: center;
-  margin: auto;
-  padding: 2em;
+ .accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 0.3em;
+    width: 50%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 1.5em;
+    transition: 0.4s;
 }
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 1em;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0.5em 2em;
+    background-color: white;
+    display: inline-flex;
+    max-height: 0;
+    font-size: 2em;
+    width: 70%;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
 
 /*
  *
- * Reset button
+ * Score board with number of moves and time time clock
  *
  */
-
-.button {
-  background: orange;
-  color: #fff;
-  padding: 1em;
-  margin: 2em;
-  display: inline-block;
-  border-radius: 2em;;
-  transition: 0.5s;
-  cursor: pointer;
+#scoreBoard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 2em;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 0.5em;
+  border: 1px solid #888;
+  width: 50%;
 }
 
- .button:hover {
-    opacity: 0.5;
+#numMoves {
+
 }
+
+#timeClock {
+
+}
+
 
 /*
  *
@@ -95,7 +133,7 @@ table {
 }
 
 td {
-  /* position: relative; */
+  /* pointer-events: none; */
   text-align: center;
 }
 
@@ -123,7 +161,7 @@ table td {
 
 .imgFadeIn {
   animation-name: fadeIn;
-  animation-duration: 1s;
+  /* animation-duration: 1s; */
   animation-fill-mode: forwards;
 }
 
@@ -138,7 +176,7 @@ table td {
 
 .imgFadeOut {
   animation-name: fadeOut;
-  animation-duration: 3s;
+  animation-duration: 1.5s;
   animation-fill-mode: forwards;
 }
 
@@ -149,4 +187,77 @@ table td {
   to {
     opacity: 0;
   }
+}
+
+/*
+ *
+ * Reset button
+ *
+ */
+
+.button {
+  background: orange;
+  color: #fff;
+  padding: 1em;
+  margin: 2em;
+  display: inline-block;
+  border-radius: 2em;;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.5;
+}
+
+
+/*
+/*
+/* The Modal (background)
+/*
+*/
+
+/* Modal background */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modalContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 2em;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 0.5em;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+/* The Close Button */
+.modalClose {
+  color: #aaa;
+  float: right;10
+  font: 3em "Ubuntu", sans-serif bold;
+}
+
+.modalClose:hover,
+.modalClose:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.stars {
+  visibility: hidden;
 }

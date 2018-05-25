@@ -19,10 +19,38 @@
 
       <!-- Game board section -->
       <section id="gameBoard">
-        <h3>Welcome to the Memory Game</h3>
-        <p class="intro">The object of the game is to find matching pairs hidden on the board.  First select a square, then select another square to see if you find a match.  If the squares match, you "win" that match.  If the pair does not match, the squares will turn back over.  To score - try to find the matches in as few moves as possible and in the least amount of time.</p>
+        <button class="accordion">Intro and Insructions</button>
+        <div class="panel">
+          <p>The object of the game is to find matching pairs hidden on the board.  First select a square, then select another square to see if you find a match.  If the squares match, you "win" that match.  If the pair does not match, the squares will turn back over.  To score - try to find the matches in as few moves as possible and in the least amount of time.</p>
+        </div>
 
-        <div style="overflow-x:auto;">
+        <!-- The Scoreboard -->
+        <section id=scoreboard>
+          <div id="numMoves">0</div>
+          <span id="minutes"></span>:<span id="seconds"></span>
+        </section>
+
+        <!-- The Modal -->
+        <section id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modalContent">
+            <p id="modalText">Modal text</p>
+            <span id="modalClose">X</span>
+            <p id="modalWinner"></p>
+            <p>
+              <img id="star1" class="stars" src="img/star.png" alt="Stars won"></img>
+              <img id="star2" class="stars" src="img/star.png" alt="Stars won"></img>
+              <img id="star3" class="stars" src="img/star.png" alt="Stars won"></img>
+              <img id="star4" class="stars" src="img/star.png" alt="Stars won"></img>
+              <img id="star5" class="stars" src="img/star.png" alt="Stars won"></img>
+            </p>
+          </div>
+
+        </section>
+
+        <!-- Set up the Game Board with Table Elements -->
+
+        <section style="overflow-x:auto;">
           <table id="board">
             <tr>
               <td id="cell1" class="cellBtn">1</td>
@@ -48,7 +76,8 @@
               <td id="cell16" class="cellBtn">16</td>
             </tr>
           </table>
-        </div>
+        </section>
+
         <!-- Game board reset button -->
         <div id="btnReset" class="button">Reset Game</div>
 

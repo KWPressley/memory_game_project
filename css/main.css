@@ -55,43 +55,44 @@ body {
  */
 
  .accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 0.3em;
-    width: 50%;
-    border: none;
-    text-align: center;
-    outline: none;
-    font-size: 1.5em;
-    transition: 0.4s;
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 0.3em;
+  width: 50%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 1.5em;
+  transition: 0.4s;
 }
 
-.active, .accordion:hover {
-    background-color: #ccc;
+.active,
+.accordion:hover {
+  background-color: #ccc;
 }
 
 .accordion:after {
-    content: "\002B";
-    color: #777;
-    font-weight: bold;
-    float: right;
-    margin-left: 1em;
+  content: "\002B";
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 1em;
 }
 
 .active:after {
-    content: "\2212";
+  content: "\2212";
 }
 
 .panel {
-    padding: 0.5em 2em;
-    background-color: white;
-    display: inline-flex;
-    max-height: 0;
-    font-size: 2em;
-    width: 70%;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
+  padding: 0.5em 2em;
+  background-color: white;
+  display: inline-flex;
+  max-height: 0;
+  font-size: 2em;
+  width: 70%;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
   }
 
 /*

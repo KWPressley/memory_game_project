@@ -15,7 +15,7 @@ const numMoves = document.querySelector('.num-moves');
 let trySelection = 1;
 let trySelected1 = '';
 let trySelected2 = '';
-const acc = document.querySelector('.accordion');
+const acc = document.getElementsByClassName('accordion');
 
 //timer variables
 let saveDate = '';
@@ -225,7 +225,12 @@ btnReset.addEventListener('click', function () {
 });
 
 //accordion operation for introduction and  rules
-for (let i = 0; i < acc.length; i++) {
+//
+// credit for timer process: https://www.w3schools.com/howto/howto_js_accordion.asp
+//
+let i;
+
+for (i = 0; i < acc.length; i++) {
   acc[i].addEventListener('click', function() {
     this.classList.toggle('active');
     let panel = this.nextElementSibling;

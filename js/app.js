@@ -5,6 +5,7 @@ const modalClose = document.getElementById('modalClose');
 const modalText = document.getElementById('modalText');
 let numMatchedSets = 0;
 let numOfMoves = 0;
+let firstClick = true;
 
 // game board elements
 const board = document.querySelector('#board');
@@ -24,7 +25,7 @@ let totalTime = 0;
 //
 // credit for timer process: https://stackoverflow.com/questions/551759
 //
-window.onload = function() {
+function startClock() {
   saveDate =  new Date();
   startTime = saveDate.getTime();
   sec = 0;
@@ -151,6 +152,10 @@ foundMatch = function() {
 //        trySelected2 is the second square selected
 
 board.addEventListener('click', function (evt) {
+  if (firstClick) {
+    firstClick = false;
+    startClock();
+  };
   // only run check when an IMG is clicked
   if (evt.target.tagName === "IMG") {
     if (evt.target.classList.contains("imgFadeIn")) {
@@ -198,13 +203,19 @@ board.addEventListener('click', function (evt) {
 btnReset.addEventListener('click', function () {
   // Find all the "img" elements
   let elements = document.querySelectorAll('.icon-image');
-    // loop thru the td's to all the current images
-    for (let i = 0; i < elements.length; i++) {
-      let child = elements[i];
-      child.parentNode.removeChild(child);
-    };
-  // Reset number of matched numMatchedSets
+  // loop thru the td's to all the current images
+  for (let i = 0; i < elements.length; i++) {
+    let child = elements[i];
+    child.parentNode.removeChild(child);
+  };
+  // Reset interval start switch (expression)
+  firstClick = true;
+  // Reset number of matched numMatchedSet
   numMatchedSets = 0;
+  // Reset game timeClock
+  clearInterval(intervalId);
+  document.getElementById("seconds").innerHTML = "00";
+  document.getElementById("minutes").innerHTML = "00";
   // Random shuffle the td's number
   let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12, 13, 14, 15, 16];
   arr = shuffle(arr);

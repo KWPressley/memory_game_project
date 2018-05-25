@@ -101,22 +101,22 @@ body {
  */
 #scoreBoard {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  font-size: 2em;
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 0.5em;
-  border: 1px solid #888;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  margin: auto;
   width: 50%;
+  height: auto;
+  font-size: 2em;
 }
 
 #numMoves {
-
+  /* font-size: 2em; */
 }
 
 #timeClock {
-
+  /* font-size: 2em; */
 }
 
 
@@ -247,7 +247,7 @@ table td {
 /* The Close Button */
 .modalClose {
   color: #aaa;
-  float: right;10
+  /* float: right;10 */
   font: 3em "Ubuntu", sans-serif bold;
 }
 

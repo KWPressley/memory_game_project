@@ -4,6 +4,8 @@
 const modal = document.querySelector('.my-modal');
 const modalClose = document.querySelector('.modal-close');
 const modalText = document.querySelector('.modal-text');
+const modalScore = document.querySelector('.modal-score');
+const modalStars = document.querySelector('.modal-stars');
 let numMatchedSets = 0;
 let numOfMoves = 0;
 let moveText = ';'
@@ -12,6 +14,10 @@ let firstClick = true;
 // game board elements
 const board = document.querySelector('.board');
 const numMoves = document.querySelector('.num-moves');
+const timeClock = document.querySelector('.time-clock');
+const scoreBoard = document.querySelector('.score-board');
+const starsEarned = document.querySelector('.stars-earned');
+
 let trySelection = 1;
 let trySelected1 = '';
 let trySelected2 = '';
@@ -23,6 +29,8 @@ let startTime = '';
 let endTime = '';
 let intervalId = '';
 let totalTime = 0;
+let starsRemaining = 5;
+let timesCheck = 0;
 
 //Build timer and display on page; save starting time to calculate length
 //
@@ -85,6 +93,8 @@ function fillGameBoard() {
   numOfMoves = 0;
   moveText = 'No. of moves: ' + numOfMoves;
   numMoves.textContent = moveText;
+  document.querySelector('.seconds').innerHTML = '00';
+  document.querySelector('.minutes').innerHTML = '00';
 }
 
 
@@ -94,6 +104,11 @@ function fillGameBoard() {
 openModal = function(text) {
   modalText.textContent = text;
   modal.style.display = 'block';
+  if (numMatchedSets < 8) {
+    document.querySelector('#btnReset').style.display = 'none';
+  } else {
+    document.querySelector('#btnReset').style.display = 'inline-flex';
+  }
 };
 
 // When the user clicks on <span> (x), close the modal
@@ -109,7 +124,7 @@ window.onclick = function() {
 }
 
 // Check to see if 8 matches have been found - completes game!
-foundMatch = function() {
+function foundMatch() {
   numMatchedSets = numMatchedSets + 1;
   if (numMatchedSets >= 8) {
     // stop clock
@@ -118,29 +133,113 @@ foundMatch = function() {
     endTime = saveDate.getTime();
     // get total time
     totalTime = endTime - startTime;
-    console.log(totalTime);
+    let textWinner = document.querySelector('.modal-winner');
+    textWinner.textContent = " -- Click Reset Button to play again!";
+    modalClose.textContent = scoreBoard.textContent;
+    while (starsEarned.childNodes.length > 0) {
+      modalStars.appendChild(starsEarned.childNodes[0]);
+    }
+    openModal('CONGRATULATIONS - We Have a WINNER!');
+  };
+}
 
-    // Determine number of stars to award
-    let stars = 0;
-      if (numOfMoves < 12) {stars = 3} else
-      if (numOfMoves < 16) {stars = 2} else
-      if (numOfMoves < 20) {stars = 1} else
-      stars = 0;
-      if (totalTime/1000 < 30) {stars = stars + 3} else
-      if (totalTime/1000 < 50) {stars = stars + 2} else
-      if (totalTime/1000 < 70) {stars = stars + 1};
-      // add stars to display
-      let textWinner = document.querySelector('.modal-winner');
-      textWinner.textContent = " -- Click Reset Button to play again!";
-      openModal('CONGRATULATIONS - We Have a WINNER!');
-
-      let elements = document.querySelectorAll('.stars');
-      // loop thru the stars to turn on all earned
-      for (let i = 0; i < elements.length; i++) {
-        if (stars > i) {
-          elements[i].style.visibility = 'visible';
-        };
-      };
+// Check the number of moves and timer to determine if take away a star
+function determineStars() {
+  // Determine number of stars to removeChild
+  // if only one star remains, leave on board and no more checking
+  if (starsRemaining > 1) {
+    let starSelector = ".star" + starsRemaining;
+    switch (numOfMoves) {
+      case 12:
+        document.querySelector(starSelector).style.display = 'none';
+        starsRemaining = starsRemaining - 1;
+        // flash num of moves to indicate reduced star
+        setTimeout(function(){
+          numMoves.style.fontWeight = 'bold';
+          numMoves.style.color = 'red';
+          setTimeout(function(){
+            numMoves.style.fontWeight = 'normal';
+            numMoves.style.color = 'initial';
+          }, 250);
+        }, 250);
+        break;
+      case 16:
+        document.querySelector(starSelector).style.display = 'none';
+        starsRemaining = starsRemaining - 1;
+        // flash num of moves to indicate reduced star
+        setTimeout(function(){
+          numMoves.style.fontWeight = 'bold';
+          numMoves.style.color = 'red';
+          setTimeout(function(){
+            numMoves.style.fontWeight = 'normal';
+            numMoves.style.color = 'initial';
+          }, 250);
+        }, 250);
+        break;
+      case 20:
+        document.querySelector(starSelector).style.display = 'none';
+        starsRemaining = starsRemaining - 1;
+        // flash num of moves to indicate reduced star
+        setTimeout(function(){
+          numMoves.style.fontWeight = 'bold';
+          numMoves.style.color = 'red';
+          setTimeout(function(){
+            numMoves.style.fontWeight = 'normal';
+            numMoves.style.color = 'initial';
+          }, 250);
+        }, 250);
+        break;
+      default:
+        break;
+    };
+    // Remove stars based on number of moves
+    //timesCheck will store each time the counter is executed so only each section is executed once.  TODO: opportunity to improve
+    saveDate =  new Date();
+    endTime = saveDate.getTime();
+    // get total time
+    totalTime = (endTime - startTime) / 1000;
+    if (totalTime > 60 && timesCheck == 0) {
+      document.querySelector(starSelector).style.display = 'none';
+      starsRemaining = starsRemaining - 1;
+      timesCheck++;
+      // flash num of moves to indicate reduced star
+      setTimeout(function(){
+        timeClock.style.fontWeight = 'bold';
+        timeClock.style.color = 'red';
+        setTimeout(function(){
+          timeClock.style.fontWeight = 'normal';
+          timeClock.style.color = 'initial';
+        }, 250);
+      }, 250);
+    };
+    if (totalTime > 120 && timesCheck == 1) {
+      document.querySelector(starSelector).style.display = 'none';
+      starsRemaining = starsRemaining - 1;
+      timesCheck++;
+      // flash num of moves to indicate reduced star
+      setTimeout(function(){
+        timeClock.style.fontWeight = 'bold';
+        timeClock.style.color = 'red';
+        setTimeout(function(){
+          timeClock.style.fontWeight = 'normal';
+          timeClock.style.color = 'initial';
+        }, 250);
+      }, 250);
+    };
+    if (totalTime > 180 && timesCheck == 2) {
+      document.querySelector(starSelector).style.display = 'none';
+      starsRemaining = starsRemaining - 1;
+      timesCheck++;
+      // flash num of moves to indicate reduced star
+      setTimeout(function(){
+        timeClock.style.fontWeight = 'bold';
+        timeClock.style.color = 'red';
+        setTimeout(function(){
+          timeClock.style.fontWeight = 'normal';
+          timeClock.style.color = 'initial';
+        }, 250);
+      }, 250);
+    };
   };
 }
 
@@ -193,6 +292,7 @@ board.addEventListener('click', function (evt) {
         let moveText = 'No. of moves: ' + numOfMoves;
         let el = document.querySelector('.num-moves');
         el.textContent = moveText;
+        determineStars();
       };  // end second square selected
     };
   };  // end check for if an IMG was selected
@@ -203,30 +303,12 @@ board.addEventListener('click', function (evt) {
 //
 
 btnReset.addEventListener('click', function () {
-  // Find all the "img" elements
-  let elements = document.querySelectorAll('.icon-image');
-  // loop thru the td's to all the current images
-  for (let i = 0; i < elements.length; i++) {
-    let child = elements[i];
-    child.parentNode.removeChild(child);
-  };
-  // Reset interval start switch (expression)
-  firstClick = true;
-  // Reset number of matched numMatchedSet
-  numMatchedSets = 0;
-  // Reset game time clock
-  clearInterval(intervalId);
-  document.querySelector('.seconds').innerHTML = '00';
-  document.querySelector('.minutes').innerHTML = '00';
-  // Random shuffle the td's number
-  let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12, 13, 14, 15, 16];
-  arr = shuffle(arr);
-  fillGameBoard();
+  location.reload(true)
 });
 
 //accordion operation for introduction and  rules
 //
-// credit for timer process: https://www.w3schools.com/howto/howto_js_accordion.asp
+// credit for accordion process: https://www.w3schools.com/howto/howto_js_accordion.asp
 //
 let i;
 

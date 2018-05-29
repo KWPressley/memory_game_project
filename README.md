@@ -12,3 +12,6 @@ The structure of the page:
   reset button
 
 Comments in files explain the logic.
+
+Dependencies:
+  This app only requires an up to date browser.  No additional software needs to be installed.

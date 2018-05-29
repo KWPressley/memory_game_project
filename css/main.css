@@ -112,13 +112,7 @@ body {
   font-size: 2em;
 }
 
-.num-moves {
 
-}
-
-.time-clock {
-
-}
 
 /*
  *
@@ -175,7 +169,7 @@ table td {
 
 .imgFadeOut {
   animation-name: fadeOut;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
@@ -187,28 +181,6 @@ table td {
     opacity: 0;
   }
 }
-
-/*
- *
- * Reset button
- *
- */
-
-.button {
-  background: orange;
-  color: #fff;
-  padding: 1em;
-  margin: 2em;
-  display: inline-block;
-  border-radius: 2em;
-  transition: 0.5s;
-  cursor: pointer;
-}
-
-.button:hover {
-  opacity: 0.5;
-}
-
 
 /*
 /*
@@ -256,6 +228,25 @@ table td {
   cursor: pointer;
 }
 
-.stars {
-  visibility: hidden;
+/*
+ *
+ * Reset button
+ *
+ */
+
+.button {
+  display: none;
+
+  background: orange;
+  color: #fff;
+  padding: 1em;
+  margin: 2em;
+  display: inline-block;
+  border-radius: 2em;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.5;
 }

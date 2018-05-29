@@ -19,7 +19,7 @@
 
       <!-- Game board section -->
       <section class="game-board">
-        <button class="accordion">Intro and Insructions</button>
+        <button class="accordion">Intro and Instructions    (click to open/close)</button>
         <section class="panel">
           <p>The object of the game is to find matching pairs hidden on the board.  First select a square, then select another square to see if you find a match.  If the squares match, you "win" that match.  If the pair does not match, the squares will turn back over.  To score - try to find the matches in as few moves as possible and in the least amount of time.</p>
         </section>
@@ -28,6 +28,13 @@
         <section class="container">
           <div class="score-board">
             <span class="num-moves">0</span>
+            <span class="stars-earned">
+              <img class="stars star1" src="img/star.png" alt="One Star won">
+              <img class="stars star2" src="img/star.png" alt="Two Stars won">
+              <img class="stars star3" src="img/star.png" alt="Three Stars won">
+              <img class="stars star4" src="img/star.png" alt="Four Stars won">
+              <img class="stars star5" src="img/star.png" alt="Five Stars won">
+            </span>
             <span class="time-clock">
               <span>Total time: </span>
               <span class="minutes"></span>:<span class="seconds"></span>
@@ -41,14 +48,11 @@
           <div class="modal-content">
             <p class="modal-text">Modal text</p>
             <span class="modal-close">X</span>
-            <p>
-              <img class="stars star1" src="img/star.png" alt="One Stars won">
-              <img class="stars star2" src="img/star.png" alt="Two Stars won">
-              <img class="stars star3" src="img/star.png" alt="Three Stars won">
-              <img class="stars star4" src="img/star.png" alt="Four Stars won">
-              <img class="stars star5" src="img/star.png" alt="Five Stars won">
-            </p>
             <p class="modal-winner"></p>
+            <p class="modal-score"></p>
+            <p class="modal-stars"></P>
+            <!-- Game board reset button -->
+            <button id="btnReset" class="button">Reset Game</button>
           </div>
 
         </section>
@@ -81,9 +85,6 @@
             </tr>
           </table>
         </section>
-
-        <!-- Game board reset button -->
-        <div id="btnReset" class="button">Reset Game</div>
 
       </section>
 

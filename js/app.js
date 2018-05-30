@@ -253,50 +253,75 @@ function determineStars() {
 //        trySelected2 is the second square selected
 
 board.addEventListener('click', function (evt) {
+  // start the game clock on first click
   if (firstClick) {
+    console.log('firstClick')
     firstClick = false;
     startClock();
   };
-  // only run check when an IMG is clicked
-  if (evt.target.tagName === 'IMG') {
-    if (evt.target.classList.contains('imgFadeIn')) {
-      openModal('Square has already been selected');
-    } else {
-    if (trySelection == 1) {
-        trySelected1 = evt.target;
-        trySelected1.classList.add('imgFadeIn');
-        trySelected1.classList.remove('imgFadeOut');
-        trySelection = 2;
+
+  // check is disabled is on to stop cliking suring animation
+      console.log(board.classList)
+  if (!board.classList.contains('disabled')) {
+      console.log(board.classList)
+    // only run check when an IMG is clicked
+    if (evt.target.tagName === 'IMG') {
+      if (evt.target.classList.contains('imgFadeIn')) {
+        openModal('Square has already been selected');
       } else {
-        trySelected2 = evt.target;
-        trySelected2.classList.add('imgFadeIn');
-        trySelected2.classList.remove('imgFadeOut');
-        trySelection = 1;
+      if (trySelection == 1) {
+          trySelected1 = evt.target;
+          trySelected1.classList.add('imgFadeIn');
+          trySelected1.classList.remove('imgFadeOut');
+          trySelection = 2;
+        } else {
+          trySelected2 = evt.target;
+          trySelected2.classList.add('imgFadeIn');
+          trySelected2.classList.remove('imgFadeOut');
+          trySelection = 1;
 
-
-        //add a 1 second delay to allow player to see selection before removing
-        setTimeout(function() {
           // if square was visible and selected again - skip check for a match
           if (trySelected1.isEqualNode(trySelected2)) {
             foundMatch();
             trySelected1.classList.add('imgFadeIn');
             trySelected2.classList.add('imgFadeIn');
           } else {
-            trySelected1.classList.remove('imgFadeIn');
-            trySelected2.classList.remove('imgFadeIn');
-            trySelected1.classList.add('imgFadeOut');
-            trySelected2.classList.add('imgFadeOut');
+            disable();
+            setTimeout(function(){
+              trySelected1.classList.remove('imgFadeIn');
+              trySelected2.classList.remove('imgFadeIn');
+              trySelected1.classList.add('imgFadeOut');
+              trySelected2.classList.add('imgFadeOut');
+              enable();
+            },750);
+
+
           }; // end check if two squares match or not
-        }, 1000);
-        numOfMoves = numOfMoves + 1;
-        let moveText = 'No. of moves: ' + numOfMoves;
-        let el = document.querySelector('.num-moves');
-        el.textContent = moveText;
-        determineStars();
-      };  // end second square selected
-    };
-  };  // end check for if an IMG was selected
+
+          numOfMoves = numOfMoves + 1;
+          let moveText = 'No. of moves: ' + numOfMoves;
+          let el = document.querySelector('.num-moves');
+          el.textContent = moveText;
+          determineStars();
+        };  // end second square selected
+      };   // end checking both cards
+    };    // end check for if an IMG was selected
+  };  // end check for disabled
 });
+
+//
+// add 'disable' class to board to stop allowing clicks while animation happens
+//
+function disable() {
+  board.classList.add('disabled');
+}
+
+//
+// remove 'disable' class to board to allow allowing clicks after animation happens
+//
+function enable() {
+  board.classList.remove('disabled');
+}
 
 //
 // reset the board to start a new game

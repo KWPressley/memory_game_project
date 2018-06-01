@@ -43,9 +43,12 @@ body {
   margin-right: auto;
 }
 
-.content {
+.game-board {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1em;
 }
 
 /*
@@ -59,7 +62,7 @@ body {
   color: #444;
   cursor: pointer;
   padding: 0.3em;
-  width: 50%;
+  width: 80%;
   border: none;
   text-align: center;
   outline: none;
@@ -85,12 +88,13 @@ body {
 }
 
 .panel {
-  padding: 0.5em 2em;
+  padding: 1em 2em;
+  margin: 0.5em;
   background-color: white;
   display: inline-flex;
   max-height: 0;
-  font-size: 2em;
-  width: 70%;
+  font-size: 1.5em;
+  width: 100%;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   }
@@ -104,15 +108,25 @@ body {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   text-align: center;
   margin: auto;
-  width: 50%;
+  width: 70%;
   height: auto;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
+.num-moves {
+  flex-shrink: 1;
+}
 
+.stars-earned{
+  flex-shrink: 1;
+}
+
+.time-clock {
+  flex-shrink: 1;
+}
 
 /*
  *
@@ -154,7 +168,6 @@ table td {
 
 .imgFadeIn {
   animation-name: fadeIn;
-  /* animation-duration: 1s; */
   animation-fill-mode: forwards;
 }
 

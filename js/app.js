@@ -1,36 +1,37 @@
 // housekeeping - create global varibles
 //
 // Modal elements
-const modal = document.querySelector('.my-modal');
-const modalClose = document.querySelector('.modal-close');
-const modalText = document.querySelector('.modal-text');
-const modalScore = document.querySelector('.modal-score');
-const modalStars = document.querySelector('.modal-stars');
-let numMatchedSets = 0;
-let numOfMoves = 0;
-let moveText = ';'
-let firstClick = true;
+const modal = document.querySelector('.my-modal'),
+  modalClose = document.querySelector('.modal-close'),
+  modalText = document.querySelector('.modal-text'),
+  modalStars = document.querySelector('.modal-stars');
+
+let numMatchedSets = 0,
+  numOfMoves = 0,
+  moveText = '',
+  firstClick = true;
 
 // game board elements
-const board = document.querySelector('.board');
-const numMoves = document.querySelector('.num-moves');
-const timeClock = document.querySelector('.time-clock');
-const scoreBoard = document.querySelector('.score-board');
-const starsEarned = document.querySelector('.stars-earned');
+const board = document.querySelector('.board'),
+  numMoves = document.querySelector('.num-moves'),
+  timeClock = document.querySelector('.time-clock'),
+  scoreBoard = document.querySelector('.score-board'),
+  starsEarned = document.querySelector('.stars-earned');
 
-let trySelection = 1;
-let trySelected1 = '';
-let trySelected2 = '';
+let trySelection = 1,
+  trySelected1 = '',
+  trySelected2 = '';
+
 const acc = document.getElementsByClassName('accordion');
 
 //timer variables
-let saveDate = '';
-let startTime = '';
-let endTime = '';
-let intervalId = '';
-let totalTime = 0;
-let starsRemaining = 5;
-let timesCheck = 0;
+let saveDate = '',
+  startTime = '',
+  endTime = '',
+  intervalId = '',
+  totalTime = 0,
+  starsRemaining = 5,
+  timesCheck = 0;
 
 //Build timer and display on page; save starting time to calculate length
 //
@@ -39,7 +40,7 @@ let timesCheck = 0;
 function startClock() {
   saveDate =  new Date();
   startTime = saveDate.getTime();
-  sec = 0;
+  let sec = 0;
 
   function pad ( val ) {
      return val > 9 ? val : '0' + val;
@@ -48,7 +49,7 @@ function startClock() {
       document.querySelector('.seconds').innerHTML=pad(++sec%60);
       document.querySelector('.minutes').innerHTML=pad(parseInt(sec/60,10));
   }, 1000);
-};
+}
 
 // create an array of ramdom generated numbers for placing images on the game board
 //  credit to: https://stackoverflow.com/questions/2450954
@@ -66,29 +67,28 @@ function shuffle(array) {
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
-  };
+  }
 
   return array;
 }
 
 // use random array to select images to place on board at random "td's"
 function fillGameBoard() {
-  let iconNum = '';
   let elements = document.querySelectorAll('.cell-btn');
-    // loop thru the td's to fill each one with an image
-    for (let i = 0; i < elements.length; i++) {
-      // if random number is > 8 reduce it by 8 so image 1 thru 8 will be selected 2 times each to make the matches
-      let j = i;
-      if (arr[j] > 8) {
-        arr[j] = arr[j] - 8;
-      }
+  // loop thru the td's to fill each one with an image
+  for (let i = 0; i < elements.length; i++) {
+    // if random number is > 8 reduce it by 8 so image 1 thru 8 will be selected 2 times each to make the matches
+    let j = i;
+    if (arr[j] > 8) {
+      arr[j] = arr[j] - 8;
+    }
 
-      let x = document.createElement('IMG');
-      x.setAttribute('src', 'img/icon-' + arr[j] + '.png');
-      x.setAttribute('alt', 'Matching iconic pictures');
-      x.setAttribute('class', 'icon-image');
-      elements[i].appendChild(x);
-    };
+    let x = document.createElement('IMG');
+    x.setAttribute('src', 'img/icon-' + arr[j] + '.png');
+    x.setAttribute('alt', 'Matching iconic pictures');
+    x.setAttribute('class', 'icon-image');
+    elements[i].appendChild(x);
+  }
   trySelection = 1;
   numOfMoves = 0;
   moveText = 'No. of moves: ' + numOfMoves;
@@ -114,14 +114,14 @@ openModal = function(text) {
 // When the user clicks on <span> (x), close the modal
 modalClose.onclick = function() {
   modal.style.display = 'none';
-}
+};
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function() {
   if (event.target == modal) {
       modal.style.display = 'none';
-  };
-}
+  }
+};
 
 // Check to see if 8 matches have been found - completes game!
 function foundMatch() {
@@ -140,7 +140,7 @@ function foundMatch() {
       modalStars.appendChild(starsEarned.childNodes[0]);
     }
     openModal('CONGRATULATIONS - We Have a WINNER!');
-  };
+  }
 }
 
 // Check the number of moves and timer to determine if take away a star
@@ -191,14 +191,14 @@ function determineStars() {
         break;
       default:
         break;
-    };
+    }
     // Remove stars based on number of moves
     //timesCheck will store each time the counter is executed so only each section is executed once.  TODO: opportunity to improve
     saveDate =  new Date();
     endTime = saveDate.getTime();
     // get total time
     totalTime = (endTime - startTime) / 1000;
-    if (totalTime > 60 && timesCheck == 0) {
+    if (totalTime > 60 && timesCheck === 0) {
       document.querySelector(starSelector).style.display = 'none';
       starsRemaining = starsRemaining - 1;
       timesCheck++;
@@ -211,8 +211,8 @@ function determineStars() {
           timeClock.style.color = 'initial';
         }, 250);
       }, 250);
-    };
-    if (totalTime > 120 && timesCheck == 1) {
+    }
+    if (totalTime > 120 && timesCheck === 1) {
       document.querySelector(starSelector).style.display = 'none';
       starsRemaining = starsRemaining - 1;
       timesCheck++;
@@ -225,8 +225,8 @@ function determineStars() {
           timeClock.style.color = 'initial';
         }, 250);
       }, 250);
-    };
-    if (totalTime > 180 && timesCheck == 2) {
+    }
+    if (totalTime > 180 && timesCheck === 2) {
       document.querySelector(starSelector).style.display = 'none';
       starsRemaining = starsRemaining - 1;
       timesCheck++;
@@ -239,8 +239,8 @@ function determineStars() {
           timeClock.style.color = 'initial';
         }, 250);
       }, 250);
-    };
-  };
+    }
+  }
 }
 
 //function to fade in the selected card
@@ -255,15 +255,12 @@ function determineStars() {
 board.addEventListener('click', function (evt) {
   // start the game clock on first click
   if (firstClick) {
-    console.log('firstClick')
     firstClick = false;
     startClock();
-  };
+  }
 
   // check is disabled is on to stop cliking suring animation
-      console.log(board.classList)
   if (!board.classList.contains('disabled')) {
-      console.log(board.classList)
     // only run check when an IMG is clicked
     if (evt.target.tagName === 'IMG') {
       if (evt.target.classList.contains('imgFadeIn')) {
@@ -294,19 +291,17 @@ board.addEventListener('click', function (evt) {
               trySelected2.classList.add('imgFadeOut');
               enable();
             },750);
-
-
-          }; // end check if two squares match or not
+          } // end check if two squares match or not
 
           numOfMoves = numOfMoves + 1;
           let moveText = 'No. of moves: ' + numOfMoves;
           let el = document.querySelector('.num-moves');
           el.textContent = moveText;
           determineStars();
-        };  // end second square selected
-      };   // end checking both cards
-    };    // end check for if an IMG was selected
-  };  // end check for disabled
+        }  // end second square selected
+      }   // end checking both cards
+    }    // end check for if an IMG was selected
+  }  // end check for disabled
 });
 
 //
@@ -328,16 +323,18 @@ function enable() {
 //
 
 btnReset.addEventListener('click', function () {
-  location.reload(true)
+  location.reload(true);
+});
+
+gameReset.addEventListener('click', function () {
+  location.reload(true);
 });
 
 //accordion operation for introduction and  rules
 //
 // credit for accordion process: https://www.w3schools.com/howto/howto_js_accordion.asp
 //
-let i;
-
-for (i = 0; i < acc.length; i++) {
+for (let i = 0; i < acc.length; i++) {
   acc[i].addEventListener('click', function() {
     this.classList.toggle('active');
     let panel = this.nextElementSibling;
@@ -347,7 +344,7 @@ for (i = 0; i < acc.length; i++) {
       panel.style.maxHeight = panel.scrollHeight + 'px';
     }
   });
-};
+}
 
 // Reset number of matched numMatchedSets
 numMatchedSets = 0;

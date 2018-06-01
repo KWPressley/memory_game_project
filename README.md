@@ -14,4 +14,6 @@ The structure of the page:
 Comments in files explain the logic.
 
 Dependencies:
+  The app uses Font-awesome and Google fonts - included with LINK stylesheets in index.HTML file.
+
   This app only requires an up to date browser.  No additional software needs to be installed.
